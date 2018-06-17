@@ -13,8 +13,13 @@ shinjuku配下は、構成検討を実施後であれば、好きにしてもら
 
 その他は随時追加していきます。
 
-## Github
+## Trello
 https://github.com/myaken/shinjuku/
 Trello連携しています。
+
 ブランチPush→「テスト中」になります。
 PullRequest作成→「レビュー中」になります。
+
+## Slack
+shinjuku-github
+チャンネルに連携しています。
