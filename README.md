@@ -9,17 +9,21 @@ shinjuku配下は、構成検討を実施後であれば、好きにしてもら
 ソースは、masterブランチへの直マージを厳禁します。
 一度、テンポラリ的なブランチ（命名規則は別途定めます）を作成し、
 そこからmasterブランチへマージするためのPullRequestを上げてください。
-レビュアーは、@myaken05 or I にしてください。
+レビュアーは、@miyan or @I姐さん にしてください。
 
 その他は随時追加していきます。
 
 ## Trello
-https://github.com/myaken/shinjuku/
+https://trello.com/b/NyO69iQ0/shinjuku-r-proj
 Trello連携しています。
 
-ブランチPush→「テスト中」になります。
-PullRequest作成→「レビュー中」になります。
+PullRequest作成→「レビュー中」に、新規カードが作成されます。
 
 ## Slack
 shinjuku-github
 チャンネルに連携しています。
+
+PullRequestが作成されたら、メッセージ作成されます。
+
+## その他
+随時追加します。
