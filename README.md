@@ -13,6 +13,17 @@ shinjuku配下は、構成検討を実施後であれば、好きにしてもら
 
 その他は随時追加していきます。
 
+## PullRequestタイトルルール
+[WIP]
+⇒WorkInProgressの略称。すなわち「作業中」
+　マージ不可の場合につけてください。
+[DNM]
+⇒DoNotMergeの略称。マージ禁止。
+　これはPR残しておきたいけど、マージは絶対しないでね、って場合に付与。
+[TEST]
+⇒テストPRの場合、これ付与してください。
+
+
 ## Trello
 https://trello.com/b/NyO69iQ0/shinjuku-r-proj
 Trello連携しています。
