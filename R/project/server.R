@@ -1,5 +1,3 @@
-# push時に不要ファイルを除外する方法検討
-
 library(shiny)
 
 shinyServer(function(input, output) {
