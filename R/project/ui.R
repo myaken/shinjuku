@@ -2,6 +2,7 @@
 #source('ui_tab_1.R', local = TRUE)
 #source('ui_tab_2.R', local = TRUE)
 #source('ui_tab_3.R', local = TRUE)
+library(ggplot2)
 
 ui <- dashboardPage(
   dashboardHeader(title = "Shiny Dashboard"),
@@ -45,7 +46,7 @@ ui <- dashboardPage(
                                All = "all"),
                    selected = "head")
     )
-    
+
 #    # Main panel for displaying outputs ----
 #    mainPanel(
 #      
@@ -71,7 +72,11 @@ ui <- dashboardPage(
       tabItem("tab_top",
               h2("Information"),
 #              div(img(src="bigorb.png"),align="center"),
-              tableOutput("contents")
+              tableOutput("contents"),
+
+
+              # Create a new row for the table.
+                DT::dataTableOutput("table")
       ),
       tabItem("tab_1",
               h2("tab_1"),

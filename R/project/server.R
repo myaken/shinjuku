@@ -1,4 +1,5 @@
 library(shiny)
+library(ggplot2)
 
 shinyServer(function(input, output) {
 
@@ -22,6 +23,13 @@ shinyServer(function(input, output) {
       return(df)
     }
     
+    # Filter data based on selections #########TEST##########
+    output$table <- DT::renderDataTable(DT::datatable({
+      if(input$disp != "head") {
+        data <- df
+        data
+      }
+    }))
   })  
 
   output$contents2 <- renderPlot({
