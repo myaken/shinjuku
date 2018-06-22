@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-=======
-# push‚É•s—vƒtƒ@ƒCƒ‹‚ğœŠO‚·‚é•û–@ŒŸ“¢
 
->>>>>>> parent of 44f2c6a... PULLReqæ™‚ã«ä¸è¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é™¤å¤–ã™ã‚‹æ–¹æ³•æ¤œè¨
+# pushæ™‚ã«ä¸è¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é™¤å¤–ã™ã‚‹æ–¹æ³•æ¤œè¨
+
 library(shiny)
 
 shinyServer(function(input, output) {
