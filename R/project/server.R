@@ -1,3 +1,6 @@
+
+# push時に不要ファイルを除外する方法検討
+
 library(shiny)
 library(ggplot2)
 
