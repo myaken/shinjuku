@@ -1,6 +1,3 @@
-
-# push時に不要ファイルを除外する方法検討
-
 library(shiny)
 library(ggplot2)
 
@@ -54,5 +51,11 @@ shinyServer(function(input, output) {
         plot(x = rnorm(df), y = rnorm(df))
     }
     
-  })  
+  })
+  
+  ## Import DataCompilation.R
+  .dcfunc.env = new.env()
+  sys.source(paste(getwd(),"DataCompilation.R",sep="/"), envir = .dcfunc.env )
+  attach( .dcfunc.env )
+  
 })
