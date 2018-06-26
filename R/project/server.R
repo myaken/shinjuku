@@ -63,4 +63,10 @@ shinyServer(function(input, output) {
   sys.source(paste(getwd(),"SumOverTime.R",sep="/"), envir = .sotfunc.env )
   attach( .sotfunc.env )
   
+  ## Import DailyScatterPlot.R
+  .dsfunc.env = new.env()
+  sys.source(paste(getwd(),"DailyScatterPlot.R",sep="/"), envir = .dsfunc.env )
+  attach( .dsfunc.env )
+  
+  
 })
