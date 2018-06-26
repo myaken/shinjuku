@@ -90,7 +90,8 @@ ui <- dashboardPage(
       tabItem("tab_2",
               h2("tab_2"),
               ### Layout for tab_2 ###
-              p("...")
+              p("..."),
+              tableOutput("contents3")
       ),
       tabItem("tab_3",
               h2("tab_3"),
