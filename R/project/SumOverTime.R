@@ -1,4 +1,4 @@
-output$contents3 <- renderTable({
+output$contents4 <- renderTable({
   
   req(input$file1)
   
@@ -35,9 +35,32 @@ output$contents3 <- renderTable({
     nighthours[i] <- round(nighthours[i], digits = 3)
   }
   
- 
+  
   OverTime <- hours
   NightWork <- nighthours
+  i <- 1
+  j <- 1
+  k <- 1
+  MonthOverTime <- NA
+  while(length(OverTime) >= i) {
+    if(str_detect(strDate[i], "16$")) {
+      tmp <- OverTime[i]
+      i <- i + 1
+    } else {
+      tmp <- 0.00
+    }
+    
+    while(!str_detect(strDate[i], "16$") & length(OverTime) >= i) {
+      tmp <- OverTime[i] + tmp
+      i <- i + 1
+    }
+    
+    i <- i + 1
+    MonthOverTime[k] <-tmp
+    k <- k + 1
+  }
+  
+  print(MonthOverTime)
   
   newdt <- data.frame(
     JetNo,
