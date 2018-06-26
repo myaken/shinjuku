@@ -13,7 +13,8 @@ ui <- dashboardPage(
       menuItem("Perf Analytics", icon=icon("line-chart"), 
                menuSubItem("tab_1", tabName = "tab_1"),
                menuSubItem("tab_2", tabName = "tab_2"),
-               menuSubItem("tab_3", tabName = "tab_3")
+               menuSubItem("tab_3", tabName = "tab_3"),
+               menuSubItem("tab_4", tabName = "tab_4")
       ),
       fileInput("file1", "Choose CSV File",
                 multiple = TRUE,
