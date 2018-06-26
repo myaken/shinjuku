@@ -71,12 +71,12 @@ ui <- dashboardPage(
     tabItems(
       tabItem("tab_top",
               h2("Information"),
-#              div(img(src="bigorb.png"),align="center"),
-              tableOutput("contents"),
-
-
+              #              div(img(src="bigorb.png"),align="center"),
+              tableOutput("contents1"),
+              
+              
               # Create a new row for the table.
-                DT::dataTableOutput("table")
+              DT::dataTableOutput("table")
       ),
       tabItem("tab_1",
               h2("tab_1"),
@@ -85,7 +85,7 @@ ui <- dashboardPage(
               verticalLayout(
                 tableOutput("contents2")
               )
-
+              
       ),
       tabItem("tab_2",
               h2("tab_2"),
@@ -96,8 +96,16 @@ ui <- dashboardPage(
       tabItem("tab_3",
               h2("tab_3"),
               ### Layout for tab_3 ###
-              p("...") 
-
+              p("...") ,
+              plotOutput("contents4")
+              # plotOutput("contents4")
+      ),
+      tabItem("tab_4",
+              h2("tab_4"),
+              ### Layout for tab_4 ###
+              p("...") ,
+              plotOutput("contents5")
+              # plotOutput("contents5")
       )
     )
   ),

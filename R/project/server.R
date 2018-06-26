@@ -58,4 +58,9 @@ shinyServer(function(input, output) {
   sys.source(paste(getwd(),"DataCompilation.R",sep="/"), envir = .dcfunc.env )
   attach( .dcfunc.env )
   
+  ## Import SumOverTime.R
+  .sotfunc.env = new.env()
+  sys.source(paste(getwd(),"SumOverTime.R",sep="/"), envir = .sotfunc.env )
+  attach( .sotfunc.env )
+  
 })
