@@ -1,4 +1,4 @@
-output$contents4 <- renderPlot({
+output$contents5 <- renderPlot({
   
   req(input$file1)
   
@@ -47,10 +47,24 @@ output$contents4 <- renderPlot({
     NightWork
   )
   
-  x <- Date
+  ## Œ‚²‚Æ‚Ìƒf[ƒ^‚É‰ÁH
+  Month <- split()
+  for (i in 1:length(Date)) {
+    tmpMonth <- 
+    
+    if( grep("/15$",Date[i]) ){
+      Month <- append("")
+      MonthlyOverTime <- append("")
+    }
+    
+  }
+
+    
+  
+  x <- Month
   y <- OverTime
   # print()
-  plot(x, y, cex=0.5, pch=4, xlab="æ—¥ä»˜(x)", ylab="æ®‹æ¥­æ™‚é–“(y)", col="blue")
+  plot(x, y, cex=0.5, pch=4, xlab="“ú•t(x)", ylab="c‹ÆŠÔ(y)", col="blue")
   
 
 })

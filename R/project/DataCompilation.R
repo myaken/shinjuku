@@ -1,4 +1,4 @@
-output$contents4 <- renderPlot({
+output$contents3 <- renderTable({
   
   req(input$file1)
   
@@ -10,13 +10,6 @@ output$contents4 <- renderPlot({
   FullName <- dt[,2]
   Date <- dt[,5]
   Calendar <- dt[,7]
-  
-  Date <- as.Date(dt[,5], "%Y/%m/%d")
-  strDate <- as.character(Date)
-  
-  for (i in 1:length(strDate)) {
-    strDate[i] <- str_replace_all(strDate[i], "-", "/")
-  }
   
   jikan <- as.POSIXlt(dt[,18], format="%H:%M")
   hours <- jikan$hour + jikan$min / 60
@@ -41,16 +34,12 @@ output$contents4 <- renderPlot({
   newdt <- data.frame(
     JetNo,
     FullName,
-    strDate,
+    Date,
     Calendar,
     OverTime,
     NightWork
   )
   
-  x <- Date
-  y <- OverTime
-  # print()
-  plot(x, y, cex=0.5, pch=4, xlab="日付(x)", ylab="残業時間(y)", col="blue")
+  print(newdt)
   
-
 })
