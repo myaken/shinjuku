@@ -13,7 +13,8 @@ ui <- dashboardPage(
       menuItem("Perf Analytics", icon=icon("line-chart"), 
                menuSubItem("tab_1", tabName = "tab_1"),
                menuSubItem("tab_2", tabName = "tab_2"),
-               menuSubItem("tab_3", tabName = "tab_3")
+               menuSubItem("tab_3", tabName = "tab_3"),
+               menuSubItem("tab_4", tabName = "tab_4")
       ),
       fileInput("file1", "Choose CSV File",
                 multiple = TRUE,
@@ -72,7 +73,7 @@ ui <- dashboardPage(
       tabItem("tab_top",
               h2("Information"),
 #              div(img(src="bigorb.png"),align="center"),
-              tableOutput("contents"),
+              tableOutput("contents1"),
 
 
               # Create a new row for the table.
@@ -90,13 +91,22 @@ ui <- dashboardPage(
       tabItem("tab_2",
               h2("tab_2"),
               ### Layout for tab_2 ###
-              p("...")
+              p("..."),
+              tableOutput("contents3")
       ),
       tabItem("tab_3",
               h2("tab_3"),
               ### Layout for tab_3 ###
-              p("...") 
-
+              p("...") ,
+              plotOutput("contents4")
+              # plotOutput("contents4")
+      ),
+      tabItem("tab_4",
+              h2("tab_4"),
+              ### Layout for tab_4 ###
+              p("...") ,
+              plotOutput("contents5")
+              # plotOutput("contents5")
       )
     )
   ),

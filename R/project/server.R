@@ -1,12 +1,9 @@
-
-# push時に不要ファイルを除外する方法検討
-
 library(shiny)
 library(ggplot2)
 
 shinyServer(function(input, output) {
 
-  output$contents <- renderTable({
+  output$contents1 <- renderTable({
     
     # input$file1 will be NULL initially. After the user selects
     # and uploads a file, head of that data file by default,
@@ -35,7 +32,7 @@ shinyServer(function(input, output) {
     }))
   })  
 
-  output$contents2 <- renderPlot({
+  output$contents2 <- renderTable({
     
     # input$file1 will be NULL initially. After the user selects
     # and uploads a file, head of that data file by default,
@@ -54,5 +51,23 @@ shinyServer(function(input, output) {
         plot(x = rnorm(df), y = rnorm(df))
     }
     
-  })  
+  })
+  
+  ## Import DataCompilation.R
+  .dcfunc.env = new.env()
+  sys.source(paste(getwd(),"DataCompilation.R",sep="/"), envir = .dcfunc.env )
+  attach( .dcfunc.env )
+
+    
+  ## Import DailyScatterPlot.R
+  .dcfunc.env2 = new.env()
+  sys.source(paste(getwd(),"DailyScatterPlot.R",sep="/"), envir = .dcfunc.env2 )
+  attach( .dcfunc.env )
+  
+  ## Import MonthlyScatterPlot.R
+  .dcfunc.env3 = new.env()
+  sys.source(paste(getwd(),"MonthlyScatterPlot.R",sep="/"), envir = .dcfunc.env3 )
+  attach( .dcfunc.env )
+
 })
+
