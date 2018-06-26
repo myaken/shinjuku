@@ -57,7 +57,7 @@ shinyServer(function(input, output) {
   .dcfunc.env = new.env()
   sys.source(paste(getwd(),"DataCompilation.R",sep="/"), envir = .dcfunc.env )
   attach( .dcfunc.env )
-
+<<<<<<< HEAD
 
     
   ## Import DailyScatterPlot.R
@@ -72,4 +72,7 @@ shinyServer(function(input, output) {
 
 })
 
-
+=======
+  
+})
+>>>>>>> upstream/master
