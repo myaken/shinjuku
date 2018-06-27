@@ -14,7 +14,8 @@ ui <- dashboardPage(
                menuSubItem("tab_1", tabName = "tab_1"),
                menuSubItem("tab_2", tabName = "tab_2"),
                menuSubItem("tab_3", tabName = "tab_3"),
-               menuSubItem("tab_4", tabName = "tab_4")
+               menuSubItem("tab_4", tabName = "tab_4"),
+               menuSubItem("tab_5", tabName = "tab_5")
       ),
       fileInput("file1", "Choose CSV File",
                 multiple = TRUE,
@@ -107,6 +108,13 @@ ui <- dashboardPage(
               p("...") ,
               plotOutput("contents5")
               # plotOutput("contents5")
+      ),
+      tabItem("tab_5",
+              h2("tab_5"),
+              ### Layout for tab_5 ###
+              p("...") ,
+              plotOutput("contents6")
+              # plotOutput("contents6")
       )
     )
   ),
