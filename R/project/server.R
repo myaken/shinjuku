@@ -68,9 +68,5 @@ shinyServer(function(input, output) {
   sys.source(paste(getwd(),"DailyScatterPlot.R",sep="/"), envir = .dsfunc.env )
   attach( .dsfunc.env )
   
-  ## Import MonthlyScatterPlot.R
-  .msfunc.env = new.env()
-  sys.source(paste(getwd(),"MonthlyScatterPlot.R",sep="/"), envir = .msfunc.env )
-  attach( .msfunc.env )
   
 })
