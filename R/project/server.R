@@ -1,9 +1,10 @@
 library(shiny)
 library(ggplot2)
+library(anytime)
 
 shinyServer(function(input, output) {
 
-  output$contents <- renderTable({
+  output$contents1 <- DT::renderDataTable({
     
     # input$file1 will be NULL initially. After the user selects
     # and uploads a file, head of that data file by default,
@@ -15,24 +16,25 @@ shinyServer(function(input, output) {
                    header = input$header,
                    sep = input$sep,
                    quote = input$quote)
-    
-    if(input$disp == "head") {
-      return(head(df))
-    }
-    else {
-      return(df)
-    }
-    
-    # Filter data based on selections #########TEST##########
-    output$table <- DT::renderDataTable(DT::datatable({
-      if(input$disp != "head") {
+
         data <- df
-        data
-      }
-    }))
+        DT::datatable(data,
+                      rownames = FALSE,
+                      class = "cell-border stripe",
+                      extensions = 'Buttons', 
+                      options = list(searching = FALSE,
+                                    dom = 'Bfrtip', buttons = I('colvis'),
+                                    initComplete = JS(
+                                      "function(settings, json) {",
+                                      "$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});",
+                                      "}")
+                                    )
+                      )
+        
+#        data
   })  
 
-  output$contents2 <- renderPlot({
+  output$contents2 <- renderTable({
     
     # input$file1 will be NULL initially. After the user selects
     # and uploads a file, head of that data file by default,
@@ -57,16 +59,14 @@ shinyServer(function(input, output) {
   .dcfunc.env = new.env()
   sys.source(paste(getwd(),"DataCompilation.R",sep="/"), envir = .dcfunc.env )
   attach( .dcfunc.env )
-  
-  ## Import SumOverTime.R
-  .sotfunc.env = new.env()
-  sys.source(paste(getwd(),"SumOverTime.R",sep="/"), envir = .sotfunc.env )
-  attach( .sotfunc.env )
-  
+
   ## Import DailyScatterPlot.R
   .dsfunc.env = new.env()
   sys.source(paste(getwd(),"DailyScatterPlot.R",sep="/"), envir = .dsfunc.env )
   attach( .dsfunc.env )
   
-  
+  ## Import MonthlyScatterPlot.R
+  .msfunc.env = new.env()
+  sys.source(paste(getwd(),"MonthlyScatterPlot.R",sep="/"), envir = .msfunc.env )
+  attach( .msfunc.env )
 })
