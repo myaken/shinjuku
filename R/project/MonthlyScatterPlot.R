@@ -54,19 +54,32 @@ output$contents6 <- renderPlot({
     # [1] "2018/01/17"
 
     # if(str_detect(strDate[i], pattern = "01$")){
-      # 正規表現によるマッチング("/数字二桁/")
       m <- regexpr("/[0123456789]+/", strDate[i])
       
-      # m にはマッチング箇所の開始位置が代入されている
-      # mのmatch.length属性にはマッチング箇所の終了位置が代入されている
-      # マッチング箇所の開始位置から終了位置を取得する
       back_ref <- substr(strDate[i], m+1, m + attr(m, "match.length")-2)
-      
       back_ref_num <- as.integer(back_ref)
+      
       if(back_ref_num != 12){
-        MonthLabel[k] <- back_ref_num+1
+        back_ref_num <- back_ref_num+1
+        if(str_detect(back_ref_num, "[1-9]$")){
+          back_ref_num=paste("0",back_ref_num, sep = "")
+        }
+        year <- substr(strDate[i], 1, 5)
+        
+        str_month <- paste(year, back_ref_num, sep="")
+        MonthLabel[k] <- str_month
+        # dmonth <- as.Date(str_month, format = "%Y/%m")
+        # MonthLabel[k] <- dmonth
       }else{
-        MonthLabel[k] <- 1
+        back_ref_num <- 1
+        year <- paste(as.integer(substr(strDate[i], 1, 4))+1, "/")
+        if(str_detect(back_ref_num, "[1-9]$")){
+          back_ref_num=paste("0",back_ref_num, sep = "")
+        }
+        str_month <- paste(year,back_ref_num, sep="")
+        MonthLabel[k] <- str_month
+        # dmonth <- as.Date(str_month, format = "%Y/%m")
+        # MonthLabel[k] <- dmonth
       }
       
     # }

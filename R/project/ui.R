@@ -73,12 +73,10 @@ ui <- dashboardPage(
     tabItems(
       tabItem("tab_top",
               h2("Information"),
-#              div(img(src="bigorb.png"),align="center"),
-              tableOutput("contents1"),
-
-
+              #              div(img(src="bigorb.png"),align="center"),
               # Create a new row for the table.
-                DT::dataTableOutput("table")
+              helpText("Please choose CSV file."),
+              DT::dataTableOutput("contents1")
       ),
       tabItem("tab_1",
               h2("tab_1"),
@@ -106,8 +104,15 @@ ui <- dashboardPage(
             h2("tab_4"),
             ### Layout for tab_4 ###
             p("...") ,
-            plotOutput("contents5")
-            # plotOutput("contents5")
+            # plotOutput("contents5"),
+            #h4("Brush and double-click to zoom"),
+            plotOutput("contents5",
+                       dblclick = "plot1_dblclick",
+                       brush = brushOpts(
+                         id = "plot1_brush",
+                         resetOnNew = TRUE
+                       )
+            )
       ),
       tabItem("tab_5",
             h2("tab_5"),

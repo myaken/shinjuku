@@ -1,3 +1,5 @@
+ranges <- reactiveValues(x = NULL, y = NULL)
+
 output$contents5 <- renderPlot({
   
   req(input$file1)
@@ -50,7 +52,28 @@ output$contents5 <- renderPlot({
   x <- Date
   y <- OverTime
   # print()
-  plot(x, y, cex=0.5, pch=4, xlab="date(x)", ylab="hours(y)", col="blue")
+  #plot(x, y, cex=0.5, pch=4, xlab="date(x)", ylab="hours(y)", col="blue", ylim=C(0.000, 10.000))
+  #plot(x, y, cex=0.5, pch=4, xlab="date(x)", ylab="hours(y)", col="blue")
+  ggplot(newdt, aes(x, y)) +
+    geom_point() +
+    coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
   
+})
 
+# When a double-click happens, check if there's a brush on the plot.
+# If so, zoom to the brush bounds; if not, reset the zoom.
+observeEvent(input$plot1_dblclick, {
+  brush <- input$plot1_brush
+  if (!is.null(brush)) {
+    print(brush$xmin)
+    print(brush$ymin) 
+    
+    # print()
+    ranges$x <- c(as.Date(brush$xmin, origin = "1970-01-01"), as.Date(brush$xmax, origin = "1970-01-01"))
+    ranges$y <- c(brush$ymin, brush$ymax)
+    
+  } else {
+    ranges$x <- NULL
+    ranges$y <- NULL
+  }
 })
