@@ -1,6 +1,12 @@
 library(shiny)
 library(ggplot2)
 library(anytime)
+library(Cairo)
+library(DT)
+library(shinydashboard)
+library(stringr)
+library(lubridate)
+library(maptools)
 
 shinyServer(function(input, output) {
 

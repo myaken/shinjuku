@@ -1,3 +1,5 @@
+ranges <- reactiveValues(x = NULL, y = NULL)
+
 output$contents6 <- renderPlot({
   
   req(input$file1)
@@ -43,46 +45,22 @@ output$contents6 <- renderPlot({
   k <- 1
   MonthLabel <- NA
   MonthOverTime <- NA
+  labeldt <- NA
   
   while(length(OverTime) >= i) {
-    # print(strDate[i])   
-    # [1] "2017/08/16"
-    # [1] "2017/09/17"
-    # [1] "2017/10/17"
-    # [1] "2017/11/17"
-    # [1] "2017/12/17"
-    # [1] "2018/01/17"
-
-    # if(str_detect(strDate[i], pattern = "01$")){
-      m <- regexpr("/[0123456789]+/", strDate[i])
-      
-      back_ref <- substr(strDate[i], m+1, m + attr(m, "match.length")-2)
-      back_ref_num <- as.integer(back_ref)
-      
-      if(back_ref_num != 12){
-        back_ref_num <- back_ref_num+1
-        if(str_detect(back_ref_num, "[1-9]$")){
-          back_ref_num=paste("0",back_ref_num, sep = "")
-        }
-        year <- substr(strDate[i], 1, 5)
-        
-        str_month <- paste(year, back_ref_num, sep="")
-        MonthLabel[k] <- str_month
-        # dmonth <- as.Date(str_month, format = "%Y/%m")
-        # MonthLabel[k] <- dmonth
-      }else{
-        back_ref_num <- 1
-        year <- paste(as.integer(substr(strDate[i], 1, 4))+1, "/")
-        if(str_detect(back_ref_num, "[1-9]$")){
-          back_ref_num=paste("0",back_ref_num, sep = "")
-        }
-        str_month <- paste(year,back_ref_num, sep="")
-        MonthLabel[k] <- str_month
-        # dmonth <- as.Date(str_month, format = "%Y/%m")
-        # MonthLabel[k] <- dmonth
-      }
-      
-    # }
+    
+    labeldate <- as.Date(strDate[i])
+    for (j in 1:length(labeldate)){
+      month(labeldate[j]) <- month(labeldate[j]) + 1
+    }
+    
+    monthdate <- NA
+    for (n in 1:length(labeldate)){
+      monthdate[n] <- as.character(labeldate[n])
+      monthdate[n] <- str_sub(monthdate[n], start = 1, end = 7)
+      MonthLabel[k] <- str_replace_all(monthdate[n], "-", "")
+    }
+    
     
     if(str_detect(strDate[i], "16$")) {
       tmp <- OverTime[i]
@@ -98,13 +76,10 @@ output$contents6 <- renderPlot({
 
     i <- i + 1
     MonthOverTime[k] <-tmp
+    labeldt[k] <- as.character(JetNo[i])
     k <- k + 1
     
-    
-    
   }
-  
-  print(MonthOverTime)
   
   newdt <- data.frame(
     JetNo,
@@ -115,15 +90,20 @@ output$contents6 <- renderPlot({
     NightWork
   )
   
-  # print(newdt)
-  
   x <- MonthLabel
   y <- MonthOverTime
-  
-  print(x)
-  print(y)
 
-  plot(x, y, cex=0.5, pch=4, xlab="date(x)", ylab="hours(y)", col="blue")
+  row <- as.Date(paste(MonthLabel, "01"), format="%Y%m%d")
   
-
-})
+   plot(row, y, xlab="date(x)", ylab="time(y)", col="blue", las=1, xaxt="n")
+   #geom_text(aes(y=y+0.2))
+   name = c(x)
+   # axis(1,row,labels=name)
+   # for (i in 1:length(labeldt)) {
+   #   pointLabel(row, y, labels=labeldt[i])
+   # }
+   pointLabel(row, y, labels=labeldt)
+   abline(h=80, col="orange")
+   abline(h=100, col="red")
+      
+ })
