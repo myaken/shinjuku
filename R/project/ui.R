@@ -5,17 +5,14 @@
 library(ggplot2)
 
 ui <- dashboardPage(
-  dashboardHeader(title = "Shiny Dashboard"),
+  dashboardHeader(title = "R challenge"),
   dashboardSidebar(
     sidebarMenu(
       menuItem("Top", icon=icon("info"), tabName = 'tab_top'
       ),
       menuItem("Perf Analytics", icon=icon("line-chart"), 
-               menuSubItem("tab_1", tabName = "tab_1"),
-               menuSubItem("tab_2", tabName = "tab_2"),
-               menuSubItem("tab_3", tabName = "tab_3"),
-               menuSubItem("tab_4", tabName = "tab_4"),
-               menuSubItem("tab_5", tabName = "tab_5")
+               menuSubItem("ScatterPlot(daily)", tabName = 'tab_1'),
+               menuSubItem("ScatterPlot(Monthly)", tabName = 'tab_2')
       ),
       fileInput("file1", "Choose CSV File",
                 multiple = TRUE,
@@ -79,30 +76,8 @@ ui <- dashboardPage(
               DT::dataTableOutput("contents1")
       ),
       tabItem("tab_1",
-              h2("tab_1"),
-              ### Layout for tab_1 ###
-              p("..."),
-              verticalLayout(
-                tableOutput("contents2")
-              )
-
-      ),
-      tabItem("tab_2",
-              h2("tab_2"),
-              ### Layout for tab_2 ###
-              p("..."),
-              tableOutput("contents3")
-      ),
-      tabItem("tab_3",
-              h2("tab_3"),
-              ### Layout for tab_3 ###
-              p("...") ,
-              plotOutput("contents4")
-              # plotOutput("contents4")
-      ),
-      tabItem("tab_4",
-            h2("tab_4"),
-            ### Layout for tab_4 ###
+            h2("ScatterPlot(daily)"),
+            ### Layout for tab_1 ###
             p("...") ,
             # plotOutput("contents5"),
             #h4("Brush and double-click to zoom"),
@@ -111,15 +86,15 @@ ui <- dashboardPage(
                        brush = brushOpts(
                          id = "plot1_brush",
                          resetOnNew = TRUE
-                       )
+                       ),
+                       hover = hoverOpts("plot_hover", delay = 100, delayType = "debounce")
             )
       ),
-      tabItem("tab_5",
-            h2("tab_5"),
-            ### Layout for tab_5 ###
+      tabItem("tab_2",
+            h2("ScatterPlot(Monthly)"),
+            ### Layout for tab_2 ###
             p("...") ,
             plotOutput("contents6")
-            # plotOutput("contents6")
       )
     )
   ),
